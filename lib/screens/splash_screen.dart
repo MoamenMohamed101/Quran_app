@@ -31,7 +31,7 @@ class SplashScreen extends StatelessWidget {
                 Text(
                   'Learn Quran and\nRecite once everyday',
                   style: GoogleFonts.poppins(
-                    color: text,
+                    color: textColor,
                     fontSize: 18,
                   ),
                   textAlign: TextAlign.center,
@@ -60,7 +60,7 @@ class SplashScreen extends StatelessWidget {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Home(),
+                            builder: (context) => Home(),
                           ),
                         ),
                         child: Center(
