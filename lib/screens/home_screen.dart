@@ -22,8 +22,10 @@ class Home extends StatelessWidget {
               icon: 'assets/svgs/bookmark-icon.svg', text: 'BookMarker')!,
         ],
         elevation: 5.0,
-        currentIndex: 1,
+        currentIndex: 0,
         onTap: (index) {},
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
       );
 
   BottomNavigationBarItem? bottomNavigationBarItem(
@@ -40,7 +42,100 @@ class Home extends StatelessWidget {
       ),
     );
   }
-
+  lastRead()=>  Stack(
+    children: [
+      Container(
+        height: 131,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFDF98FA),
+              Color(0xFFB070FD),
+              Color(0xFF9055FF),
+            ],
+            stops: [0, .6, 1],
+          ),
+        ),
+      ),
+      Positioned(
+        right: 0,
+        bottom: 0,
+        child: SvgPicture.asset('assets/svgs/quran.svg'),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                SvgPicture.asset('assets/svgs/book.svg'),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  'Last Read',
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Al-Fatihah',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Text(
+              'Ayat No: 1',
+              style: GoogleFonts.poppins(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+  greeting()=> Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'Assalamualaikum',
+        style: GoogleFonts.poppins(
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+          color: textColor,
+        ),
+      ),
+      const SizedBox(
+        height: 4,
+      ),
+      Text(
+        'Arif Iskander',
+        style: GoogleFonts.poppins(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+      ),
+      const SizedBox(
+        height: 24,
+      ),
+      lastRead(),
+    ],
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +163,13 @@ class Home extends StatelessWidget {
       ),
       backgroundColor: background,
       bottomNavigationBar: bottomNavigationBar(),
+      body: DefaultTabController(
+        length: 4,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: greeting()
+        ),
+      ),
     );
   }
 }
