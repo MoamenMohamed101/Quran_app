@@ -10,44 +10,44 @@ String surahToJson(List<Surah> data) => json.encode(List<dynamic>.from(data.map(
 
 class Surah {
   Surah({
-    required this.nomor,
-    required this.nama,
-    required this.namaLatin,
-    required this.jumlahAyat,
-    required this.tempatTurun,
-    required this.arti,
-    required this.deskripsi,
+    required this.number,
+    required this.name,
+    required this.latinName,
+    required this.numberofAyat,
+    required this.placeGetOff,
+    required this.meaning,
+    required this.description,
     required this.audio,
   });
 
-  int nomor;
-  String nama;
-  String namaLatin;
-  int jumlahAyat;
-  TempatTurun tempatTurun;
-  String arti;
-  String deskripsi;
+  int number;
+  String name;
+  String latinName;
+  int numberofAyat;
+  TempatTurun placeGetOff;
+  String meaning;
+  String description;
   String audio;
 
   factory Surah.fromJson(Map<String, dynamic> json) => Surah(
-    nomor: json["nomor"],
-    nama: json["nama"],
-    namaLatin: json["nama_latin"],
-    jumlahAyat: json["jumlah_ayat"],
-    tempatTurun: tempatTurunValues.map[json["tempat_turun"]]!,
-    arti: json["arti"],
-    deskripsi: json["deskripsi"],
+    number: json["nomor"],
+    name: json["nama"],
+    latinName: json["nama_latin"],
+    numberofAyat: json["jumlah_ayat"],
+    placeGetOff: tempatTurunValues.map[json["tempat_turun"]]!,
+    meaning: json["arti"],
+    description: json["deskripsi"],
     audio: json["audio"],
   );
 
   Map<String, dynamic> toJson() => {
-    "nomor": nomor,
-    "nama": nama,
-    "nama_latin": namaLatin,
-    "jumlah_ayat": jumlahAyat,
-    "tempat_turun": tempatTurunValues.reverse[tempatTurun],
-    "arti": arti,
-    "deskripsi": deskripsi,
+    "nomor": number,
+    "nama": name,
+    "nama_latin": latinName,
+    "jumlah_ayat": numberofAyat,
+    "tempat_turun": tempatTurunValues.reverse[placeGetOff],
+    "arti": meaning,
+    "deskripsi": description,
     "audio": audio,
   };
 }
