@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quran/components.dart';
 import 'package:quran/globals.dart';
+import 'package:quran/tabs/para_tab.dart';
+import 'package:quran/tabs/surah_tab.dart';
 
 class Home extends StatelessWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   BottomNavigationBar? bottomNavigationBar() => BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -42,100 +45,7 @@ class Home extends StatelessWidget {
       ),
     );
   }
-  lastRead()=>  Stack(
-    children: [
-      Container(
-        height: 131,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFFDF98FA),
-              Color(0xFFB070FD),
-              Color(0xFF9055FF),
-            ],
-            stops: [0, .6, 1],
-          ),
-        ),
-      ),
-      Positioned(
-        right: 0,
-        bottom: 0,
-        child: SvgPicture.asset('assets/svgs/quran.svg'),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SvgPicture.asset('assets/svgs/book.svg'),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  'Last Read',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Al-Fatihah',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            Text(
-              'Ayat No: 1',
-              style: GoogleFonts.poppins(color: Colors.white),
-            ),
-          ],
-        ),
-      ),
-    ],
-  );
-  greeting()=> Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        'Assalamualaikum',
-        style: GoogleFonts.poppins(
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-          color: textColor,
-        ),
-      ),
-      const SizedBox(
-        height: 4,
-      ),
-      Text(
-        'Arif Iskander',
-        style: GoogleFonts.poppins(
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-        ),
-      ),
-      const SizedBox(
-        height: 24,
-      ),
-      lastRead(),
-    ],
-  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,10 +74,38 @@ class Home extends StatelessWidget {
       backgroundColor: background,
       bottomNavigationBar: bottomNavigationBar(),
       body: DefaultTabController(
-        length: 4,
+        length: 2,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: greeting()
+          child: NestedScrollView(
+            physics: const BouncingScrollPhysics(),
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              SliverToBoxAdapter(
+                child: greeting(),
+              ),
+              SliverAppBar(
+                shape: Border(
+                  bottom: BorderSide(
+                    color: const Color(0xFFAAAAAA).withOpacity(.1),
+                  ),
+                ),
+                pinned: true,
+                elevation: 0.0,
+                automaticallyImplyLeading: false,
+                backgroundColor: background,
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(0),
+                  child: tab(),
+                ),
+              ),
+            ],
+            body: const TabBarView(
+              children: [
+                SurahTab(),
+                ParaTab(),
+              ],
+            ),
+          ),
         ),
       ),
     );
