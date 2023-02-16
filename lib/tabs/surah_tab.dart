@@ -41,7 +41,7 @@ class SurahTab extends StatelessWidget {
             Stack(
               children: [
                 SvgPicture.asset('assets/svgs/nomor-surah.svg'),
-                SizedBox()
+                const SizedBox()
               ],
             )
           ],
