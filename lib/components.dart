@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/globals.dart';
+import 'package:quran/model/surah_model.dart';
 
 // purple container
 lastRead() => Stack(
@@ -113,11 +114,75 @@ tab() => TabBar(
         // Tab(text: 'hijab'),
       ],
     );
+
 void printFullText(String text) {
   final pattern = RegExp('.{1,800}');
   pattern.allMatches(text).forEach(
         (element) => print(
-      element.group(0),
-    ),
-  );
+          element.group(0),
+        ),
+      );
 }
+
+details(Surah surah) => Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      child: Stack(
+        children: [
+          Container(
+            height: 257,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFFDF98FA),
+                  Color(0xFFB070FD),
+                  Color(0xFF9055FF),
+                ],
+                stops: [0, .6, 1],
+              ),
+            ),
+          ),
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: Opacity(
+                opacity: .2,
+                child: SvgPicture.asset(
+                  'assets/svgs/quran.svg',
+                  width: 250,
+                )),
+          ),
+          Container(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text(
+                    surah.latinName,
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 26,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    surah.meaning,
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
