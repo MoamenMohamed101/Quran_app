@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/globals.dart';
+import 'package:quran/model/ayat.dart';
 import 'package:quran/model/surah_model.dart';
 
 // purple container
@@ -125,7 +126,7 @@ void printFullText(String text) {
 }
 
 details(Surah surah) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Stack(
         children: [
           Container(
@@ -223,6 +224,78 @@ details(Surah surah) => Padding(
                 ],
               ),
             ),
+          ),
+        ],
+      ),
+    );
+
+ayatItem(Ayat ayat) => Padding(
+      padding: const EdgeInsets.only(top: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: grey,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  height: 27,
+                  width: 27,
+                  decoration: BoxDecoration(
+                    color: primary,
+                    borderRadius: BorderRadius.circular(27 / 2),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${ayat.nomor}',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                Icon(
+                  Icons.share_outlined,
+                  color: primary,
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Icon(
+                  Icons.play_arrow_outlined,
+                  color: primary,
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Icon(
+                  Icons.bookmark_outline,
+                  color: primary,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          Text(
+            ayat.ar,
+            style: GoogleFonts.amiri(
+                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.right,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Text(
+            ayat.idn,
+            style: GoogleFonts.poppins(color: textColor, fontSize: 18),
           ),
         ],
       ),

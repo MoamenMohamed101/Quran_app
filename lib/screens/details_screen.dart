@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/components.dart';
 import 'package:quran/globals.dart';
+import 'package:quran/model/ayat.dart';
 import 'package:quran/model/surah_model.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -20,6 +21,8 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,17 @@ class DetailsScreen extends StatelessWidget {
                 child: details(surah),
               ),
             ],
-            body: Container(),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) => ayatItem(
+                  snapshot.data!.ayat![index],
+                ),
+                separatorBuilder: (context, index) => Container(),
+                itemCount: surah.ayat!.length,
+              ),
+            ),
           ),
         );
       },
