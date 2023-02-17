@@ -157,7 +157,7 @@ details(Surah surah) => Padding(
           Container(
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(28.0),
               child: Column(
                 children: [
                   Text(
@@ -179,6 +179,47 @@ details(Surah surah) => Padding(
                       fontSize: 16,
                     ),
                   ),
+                  Divider(
+                    color: Colors.white.withOpacity(.35),
+                    thickness: 2,
+                    height: 32,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        surah.placeGetOff.name,
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Container(
+                        height: 4,
+                        width: 4,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                            color: Colors.white),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        '${surah.numberofAyat} Ayat',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  SvgPicture.asset('assets/svgs/bismillah.svg'),
                 ],
               ),
             ),
