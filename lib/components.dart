@@ -86,7 +86,7 @@ greeting() => Column(
           height: 4,
         ),
         Text(
-          'Arif Iskander',
+          'Moamen Mohamed',
           style: GoogleFonts.poppins(
             fontSize: 24,
             fontWeight: FontWeight.w600,
@@ -113,3 +113,11 @@ tab() => TabBar(
         // Tab(text: 'hijab'),
       ],
     );
+void printFullText(String text) {
+  final pattern = RegExp('.{1,800}');
+  pattern.allMatches(text).forEach(
+        (element) => print(
+      element.group(0),
+    ),
+  );
+}
