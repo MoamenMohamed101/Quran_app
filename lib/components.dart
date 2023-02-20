@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/globals.dart';
 import 'package:quran/model/ayat.dart';
 import 'package:quran/model/surah_model.dart';
+import 'package:quran/screens/details_screen.dart';
 
 // purple container
 lastRead() => Stack(
@@ -88,8 +89,8 @@ greeting() => Column(
           height: 4,
         ),
         Text(
-          'Moamen Mohamed',
-          style: GoogleFonts.poppins(
+          'السلام عليكم و رحمة الله و بركاته',
+          style: GoogleFonts.aboreto(
             fontSize: 24,
             fontWeight: FontWeight.w600,
             color: Colors.white,
@@ -155,31 +156,31 @@ details(Surah surah) => Padding(
                   width: 250,
                 )),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.all(28.0),
               child: Column(
                 children: [
                   Text(
-                    surah.latinName,
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 26,
+                    'سورة : ${surah.name}',
+                    style: GoogleFonts.amiri(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35,
                       color: Colors.white,
                     ),
                   ),
                   const SizedBox(
                     height: 4,
                   ),
-                  Text(
-                    surah.meaning,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    ),
-                  ),
+                  // Text(
+                  //   surah.meaning,
+                  //   style: GoogleFonts.poppins(
+                  //     color: Colors.white,
+                  //     fontWeight: FontWeight.w500,
+                  //     fontSize: 16,
+                  //   ),
+                  // ),
                   Divider(
                     color: Colors.white.withOpacity(.35),
                     thickness: 2,
@@ -287,7 +288,7 @@ ayatItem(Ayat ayat) => Padding(
           Text(
             ayat.ar,
             style: GoogleFonts.amiri(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
             textAlign: TextAlign.right,
           ),
           const SizedBox(
@@ -300,3 +301,93 @@ ayatItem(Ayat ayat) => Padding(
         ],
       ),
     );
+
+surahItem({Surah? surah, BuildContext? context}) => InkWell(
+  onTap: () => Navigator.push(
+    context!,
+    MaterialPageRoute(
+      builder: (context) => DetailsScreen(surah.number),
+    ),
+  ),
+  child: Padding(
+    padding: const EdgeInsets.symmetric(vertical: 16),
+    child: Row(
+      children: [
+        Stack(
+          children: [
+            SvgPicture.asset('assets/svgs/nomor-surah.svg'),
+            SizedBox(
+              height: 36,
+              width: 36,
+              child: Center(
+                  child: Text(
+                    '${surah!.number}',
+                    style: GoogleFonts.poppins(
+                        color: Colors.white, fontWeight: FontWeight.w500),
+                  )),
+            ),
+          ],
+        ),
+        const SizedBox(
+          width: 16,
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                surah.latinName,
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              Row(
+                children: [
+                  Text(
+                    surah.placeGetOff.name,
+                    style: GoogleFonts.poppins(
+                      color: textColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Container(
+                    height: 4,
+                    width: 4,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: textColor),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    '${surah.numberofAyat} Ayat',
+                    style: GoogleFonts.poppins(
+                      color: textColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+        Text(
+          surah.name,
+          style: GoogleFonts.amiri(
+              color: primary, fontWeight: FontWeight.w500, fontSize: 20),
+        )
+      ],
+    ),
+  ),
+);

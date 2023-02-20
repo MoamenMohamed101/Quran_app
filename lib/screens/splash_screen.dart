@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/globals.dart';
+import 'package:quran/layout/quran_layout.dart';
 import 'package:quran/screens/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -60,7 +61,7 @@ class SplashScreen extends StatelessWidget {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Home(),
+                            builder: (context) => QuranLayout(),
                           ),
                         ),
                         child: Center(
