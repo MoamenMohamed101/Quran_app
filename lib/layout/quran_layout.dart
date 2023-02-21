@@ -17,6 +17,7 @@ class QuranLayout extends StatelessWidget {
           return Scaffold(
             backgroundColor: background,
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               backgroundColor: background,
               title: Text(
                 cubit.titles[cubit.currentIndex!],

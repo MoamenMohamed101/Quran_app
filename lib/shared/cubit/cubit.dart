@@ -5,6 +5,7 @@ import 'package:quran/globals.dart';
 import 'package:quran/screens/azkar.dart';
 import 'package:quran/screens/home_screen.dart';
 import 'package:quran/screens/saved_screen.dart';
+import 'package:quran/screens/tasbeeh.dart';
 import 'package:quran/shared/cubit/states.dart';
 
 class QuranCubit extends Cubit<QuranStates> {
@@ -13,11 +14,13 @@ class QuranCubit extends Cubit<QuranStates> {
   List screens = [
     HomeScreen(),
     AzkarScreen(),
+    TasbeehScreen(),
     SavedScreen(),
   ];
   List<String> titles = [
     'Quran',
     'Azkar',
+    'Popular Tasbeeh',
     'Saved Ayat',
   ];
 
@@ -32,15 +35,16 @@ class QuranCubit extends Cubit<QuranStates> {
         items: [
           bottomNavigationBarItem(icon: 'assets/svgs/quran-icon.svg', text: 'Quran')!,
           bottomNavigationBarItem(icon: 'assets/svgs/doa-icon.svg', text: 'Doa')!,
+          bottomNavigationBarItem(icon: 'assets/svgs/lamp-icon.svg', text: 'Tasbeeh')!,
           bottomNavigationBarItem(
-              icon: 'assets/svgs/bookmark-icon.svg', text: 'BookMarker')!,
+              icon: 'assets/svgs/bookmark-icon.svg', text: 'Book Marker')!,
         ],
         elevation: 5.0,
         currentIndex: currentIndex!,
         onTap: (index) {
           changeIndex(index);
         },
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
       );
 
