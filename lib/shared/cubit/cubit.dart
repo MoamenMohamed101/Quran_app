@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quran/globals.dart';
+import 'package:quran/screens/TasbeehItems.dart';
 import 'package:quran/screens/azkar.dart';
 import 'package:quran/screens/home_screen.dart';
 import 'package:quran/screens/saved_screen.dart';
@@ -14,7 +15,7 @@ class QuranCubit extends Cubit<QuranStates> {
   List screens = [
     HomeScreen(),
     AzkarScreen(),
-    TasbeehScreen(),
+    TasbeehItems(),
     SavedScreen(),
   ];
   List<String> titles = [

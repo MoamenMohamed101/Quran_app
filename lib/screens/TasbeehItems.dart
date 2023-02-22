@@ -12,12 +12,17 @@ class TasbeehItems extends StatelessWidget {
       backgroundColor: background,
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              tasbeehItem('سبحان الله' , context),
-              tasbeehItem('الحمد الله', context),
-              tasbeehItem('الله اكبر', context),
-              tasbeehItem('رب زدني علماً', context),
+              tasbeehItem('سُبْحَانَ اللَّهِ' , context),
+              tasbeehItem('الْحَمْدُ للّهِ', context),
+              tasbeehItem('اللَّهُ أَكْبَرُ', context),
+              tasbeehItem('لَا إِلَهَ إِلَّا اللَّهُ', context),
+              tasbeehItem('رَّبِّ زِدْنِي عِلْمًاً', context),
+              tasbeehItem('سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّه الْعَظِيم', context),
+              tasbeehItem('اللهم صّلِ وسَلّمْ عَلۓِ نَبِيْنَامُحَمد ﷺ', context),
+              tasbeehItem('حَسْبُنَا اللّهُ وَنِعْمَ الْوَكِيلُ', context),
               tasbeehItem('حسبنا الله و نعمة الوكيل', context),
             ],
           ),

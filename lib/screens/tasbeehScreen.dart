@@ -46,19 +46,22 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
             padding: EdgeInsets.only(top: 100, left: 20, right: 20, bottom: 20),
             child: Text(
               tasbeehName,
-              style: GoogleFonts.amiri(
-                  fontSize: 45,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+              textAlign:TextAlign.center  ,
+              style: GoogleFonts.poppins(
+                fontSize: 45,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Center(
             child: Text(
               '$_counter',
               style: const TextStyle(
-                  fontSize: 100,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+                fontSize: 100,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Padding(

@@ -90,7 +90,7 @@ greeting() => Column(
           height: 4,
         ),
         Text(
-          'السلام عليكم و رحمة الله و بركاته',
+          'السَّلامُ عَلَيْكُم ورَحْمَةُ اللهِ وَبَرَكاتُهُ',
           style: GoogleFonts.aboreto(
             fontSize: 24,
             fontWeight: FontWeight.w600,
@@ -289,7 +289,7 @@ ayatItem(Ayat ayat) => Padding(
           Text(
             ayat.ar,
             style: GoogleFonts.amiri(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
             textAlign: TextAlign.right,
           ),
           const SizedBox(
