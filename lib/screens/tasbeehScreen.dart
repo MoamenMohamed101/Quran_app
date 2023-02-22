@@ -3,14 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/globals.dart';
 
 class TasbeehScreen extends StatefulWidget {
-  const TasbeehScreen({Key? key}) : super(key: key);
+  var name;
+
+  TasbeehScreen({this.name, Key? key}) : super(key: key);
 
   @override
-  State<TasbeehScreen> createState() => _TasbeehScreenState();
+  State<TasbeehScreen> createState() => _TasbeehScreenState(name);
 }
 
 class _TasbeehScreenState extends State<TasbeehScreen> {
   int _counter = 0;
+  var tasbeehName;
+
+  _TasbeehScreenState(this.tasbeehName);
 
   void _incrementCounter() {
     setState(() {
@@ -38,17 +43,20 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: EdgeInsets.all(60.0),
+            padding: EdgeInsets.only(top: 100, left: 20, right: 20, bottom: 20),
             child: Text(
-              'سبحان الله',
-              style: GoogleFonts.amiri(fontSize: 50,color: Colors.white,fontWeight: FontWeight.bold),
+              tasbeehName,
+              style: GoogleFonts.amiri(
+                  fontSize: 45,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Center(
             child: Text(
               '$_counter',
               style: const TextStyle(
-                  fontSize: 120,
+                  fontSize: 100,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),

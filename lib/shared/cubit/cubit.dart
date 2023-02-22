@@ -5,7 +5,7 @@ import 'package:quran/globals.dart';
 import 'package:quran/screens/azkar.dart';
 import 'package:quran/screens/home_screen.dart';
 import 'package:quran/screens/saved_screen.dart';
-import 'package:quran/screens/tasbeeh.dart';
+import 'package:quran/screens/tasbeehScreen.dart';
 import 'package:quran/shared/cubit/states.dart';
 
 class QuranCubit extends Cubit<QuranStates> {

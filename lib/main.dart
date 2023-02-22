@@ -1,9 +1,10 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:quran/screens/TasbeehItems.dart';
 import 'package:quran/screens/splash_screen.dart';
-import 'package:quran/screens/tasbeeh.dart';
 import 'package:quran/shared/cubit/bloc_observer.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyCustomSplashScreen(),
+      home: TasbeehItems(),
     );
   }
 }

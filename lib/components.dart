@@ -5,10 +5,10 @@ import 'package:quran/globals.dart';
 import 'package:quran/model/ayat.dart';
 import 'package:quran/model/surah_model.dart';
 import 'package:quran/screens/details_screen.dart';
+import 'package:quran/screens/tasbeehScreen.dart';
 
 // purple container
-lastRead() =>
-    Stack(
+lastRead() => Stack(
       children: [
         Container(
           height: 131,
@@ -75,8 +75,7 @@ lastRead() =>
       ],
     );
 
-greeting() =>
-    Column(
+greeting() => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -105,8 +104,7 @@ greeting() =>
       ],
     );
 
-tab() =>
-    TabBar(
+tab() => TabBar(
       unselectedLabelColor: textColor,
       labelColor: Colors.white,
       indicatorColor: primary,
@@ -123,15 +121,13 @@ tab() =>
 void printFullText(String text) {
   final pattern = RegExp('.{1,800}');
   pattern.allMatches(text).forEach(
-        (element) =>
-        print(
+        (element) => print(
           element.group(0),
         ),
-  );
+      );
 }
 
-details(Surah surah) =>
-    Padding(
+details(Surah surah) => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Stack(
         children: [
@@ -235,8 +231,7 @@ details(Surah surah) =>
       ),
     );
 
-ayatItem(Ayat ayat) =>
-    Padding(
+ayatItem(Ayat ayat) => Padding(
       padding: const EdgeInsets.only(top: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -308,15 +303,13 @@ ayatItem(Ayat ayat) =>
       ),
     );
 
-surahItem({Surah? surah, BuildContext? context}) =>
-    InkWell(
-      onTap: () =>
-          Navigator.push(
-            context!,
-            MaterialPageRoute(
-              builder: (context) => DetailsScreen(surah.number),
-            ),
-          ),
+surahItem({Surah? surah, BuildContext? context}) => InkWell(
+      onTap: () => Navigator.push(
+        context!,
+        MaterialPageRoute(
+          builder: (context) => DetailsScreen(surah.number),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
@@ -329,10 +322,10 @@ surahItem({Surah? surah, BuildContext? context}) =>
                   width: 36,
                   child: Center(
                       child: Text(
-                        '${surah!.number}',
-                        style: GoogleFonts.poppins(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      )),
+                    '${surah!.number}',
+                    style: GoogleFonts.poppins(
+                        color: Colors.white, fontWeight: FontWeight.w500),
+                  )),
                 ),
               ],
             ),
@@ -393,10 +386,55 @@ surahItem({Surah? surah, BuildContext? context}) =>
             Text(
               surah.name,
               style: GoogleFonts.amiri(
-                  color: primary, fontWeight: FontWeight.w500, fontSize: 20),
-            )
+                color: primary,
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
+              ),
+            ),
           ],
         ),
       ),
     );
 
+tasbeehItem(text,context) => Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          InkWell(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TasbeehScreen(name: text),
+              ),
+            ),
+            child: Container(
+              height: 70,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: primary,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 7), // Shadow position
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    text,
+                    style: GoogleFonts.amiri(
+                      color: Colors.white,
+                      fontSize: 25,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
