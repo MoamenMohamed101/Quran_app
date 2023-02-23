@@ -10,7 +10,6 @@ class SurahTab extends StatelessWidget {
     String? data = await rootBundle.loadString('assets/datas/list-surah.json');
     return surahFromJson(data);
   }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -21,7 +20,7 @@ class SurahTab extends StatelessWidget {
           return ListView.separated(
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => surahItem(
-                surah: snapshot.data!.elementAt(index), context: context),
+                surah: snapshot.data![index], context: context),
             separatorBuilder: (context, index) => Divider(
               color: const Color(0xFF7B80AD).withOpacity(.35),
             ),
@@ -35,6 +34,4 @@ class SurahTab extends StatelessWidget {
       future: getSurahList(),
     );
   }
-
-
 }

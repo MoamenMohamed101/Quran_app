@@ -21,6 +21,7 @@ class Surah {
   String meaning;
   String description;
   String audio;
+  bool? status;
   List<Ayat>? ayat;
 
   Surah(
@@ -32,24 +33,27 @@ class Surah {
       required this.meaning,
       required this.description,
       required this.audio,
-      required this.ayat});
+      required this.ayat,
+      required this.status});
 
   factory Surah.fromJson(Map<String, dynamic> json) => Surah(
-      number: json["nomor"],
-      name: json["nama"],
-      latinName: json["nama_latin"],
-      numberofAyat: json["jumlah_ayat"],
-      placeGetOff: tempatTurunValues.map[json["tempat_turun"]]!,
-      meaning: json["arti"],
-      description: json["deskripsi"],
-      audio: json["audio"],
-      ayat: json.containsKey('ayat')
-          ? List<Ayat>.from(
-              json['ayat'].map(
-                (x) => Ayat.fromJson(x),
-              ),
-            )
-          : null);
+        number: json["nomor"],
+        name: json["nama"],
+        latinName: json["nama_latin"],
+        numberofAyat: json["jumlah_ayat"],
+        placeGetOff: tempatTurunValues.map[json["tempat_turun"]]!,
+        meaning: json["arti"],
+        description: json["deskripsi"],
+        audio: json["audio"],
+        ayat: json.containsKey('ayat')
+            ? List<Ayat>.from(
+                json['ayat'].map(
+                  (x) => Ayat.fromJson(x),
+                ),
+              )
+            : null,
+        status: json['status'],
+      );
 
   Map<String, dynamic> toJson() => {
         "nomor": number,
@@ -66,7 +70,8 @@ class Surah {
                   (e) => e.toJson(),
                 ),
               )
-            : []
+            : [],
+        "status": status,
       };
 }
 

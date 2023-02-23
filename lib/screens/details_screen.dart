@@ -10,7 +10,7 @@ import 'package:quran/model/surah_model.dart';
 class DetailsScreen extends StatelessWidget {
   final int? numberOfSura;
 
-  const DetailsScreen(this.numberOfSura, {super.key});
+  DetailsScreen(this.numberOfSura, {super.key});
 
   Future<Surah> getDetails() async {
     var data = await Dio().get('https://equran.id/api/surat/$numberOfSura');
@@ -20,7 +20,7 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
-
+  bool status = true;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Surah>(
@@ -73,7 +73,7 @@ class DetailsScreen extends StatelessWidget {
               child: ListView.separated(
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => ayatItem(
-                  snapshot.data!.ayat![index],
+                  snapshot.data!.ayat![index]
                 ),
                 separatorBuilder: (context, index) => Container(),
                 itemCount: surah.ayat!.length,

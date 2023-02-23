@@ -51,7 +51,8 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SliverAppBar(
                   shape: Border(
-                    bottom: BorderSide(
+                    // chamge to bottom
+                    top: BorderSide(
                       color: const Color(0xFFAAAAAA).withOpacity(.1),
                     ),
                   ),
@@ -61,16 +62,18 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: background,
                   bottom: PreferredSize(
                     preferredSize: const Size.fromHeight(0),
-                    child: tab(),
+                    // change to tab
+                    child: SurahTab(),
                   ),
                 ),
-              ],
-              body: const TabBarView(
-                children: [
-                  SurahTab(),
-                  ParaTab(),
-                ],
-              ),
+              ], body: SurahTab(),
+              // open comment
+              // body: TabBarView(
+              //   children: [
+              //     SurahTab(),
+              //     ParaTab(),
+              //   ],
+              // ),
             ),
           ),
         ),

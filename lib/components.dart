@@ -6,6 +6,7 @@ import 'package:quran/model/ayat.dart';
 import 'package:quran/model/surah_model.dart';
 import 'package:quran/screens/details_screen.dart';
 import 'package:quran/screens/tasbeehScreen.dart';
+import 'package:hive_flutter/adapters.dart';
 
 // purple container
 lastRead() => Stack(
@@ -278,7 +279,7 @@ ayatItem(Ayat ayat) => Padding(
                 ),
                 Icon(
                   Icons.bookmark_outline,
-                  color: primary,
+                  color: primary
                 ),
               ],
             ),
@@ -321,11 +322,12 @@ surahItem({Surah? surah, BuildContext? context}) => InkWell(
                   height: 36,
                   width: 36,
                   child: Center(
-                      child: Text(
-                    '${surah!.number}',
-                    style: GoogleFonts.poppins(
-                        color: Colors.white, fontWeight: FontWeight.w500),
-                  )),
+                    child: Text(
+                      '${surah!.number}',
+                      style: GoogleFonts.poppins(
+                          color: Colors.white, fontWeight: FontWeight.w500),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -379,7 +381,7 @@ surahItem({Surah? surah, BuildContext? context}) => InkWell(
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -396,7 +398,7 @@ surahItem({Surah? surah, BuildContext? context}) => InkWell(
       ),
     );
 
-tasbeehItem(text,context) => Padding(
+tasbeehItem(text, context) => Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [

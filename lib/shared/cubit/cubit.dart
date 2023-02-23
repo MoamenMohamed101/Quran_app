@@ -6,7 +6,6 @@ import 'package:quran/screens/TasbeehItems.dart';
 import 'package:quran/screens/azkar.dart';
 import 'package:quran/screens/home_screen.dart';
 import 'package:quran/screens/saved_screen.dart';
-import 'package:quran/screens/tasbeehScreen.dart';
 import 'package:quran/shared/cubit/states.dart';
 
 class QuranCubit extends Cubit<QuranStates> {
@@ -34,9 +33,12 @@ class QuranCubit extends Cubit<QuranStates> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: grey,
         items: [
-          bottomNavigationBarItem(icon: 'assets/svgs/quran-icon.svg', text: 'Quran')!,
-          bottomNavigationBarItem(icon: 'assets/svgs/doa-icon.svg', text: 'Doa')!,
-          bottomNavigationBarItem(icon: 'assets/svgs/lamp-icon.svg', text: 'Tasbeeh')!,
+          bottomNavigationBarItem(
+              icon: 'assets/svgs/quran-icon.svg', text: 'Quran')!,
+          bottomNavigationBarItem(
+              icon: 'assets/svgs/doa-icon.svg', text: 'Doa')!,
+          bottomNavigationBarItem(
+              icon: 'assets/svgs/lamp-icon.svg', text: 'Tasbeeh')!,
           bottomNavigationBarItem(
               icon: 'assets/svgs/bookmark-icon.svg', text: 'Book Marker')!,
         ],
@@ -65,4 +67,5 @@ class QuranCubit extends Cubit<QuranStates> {
   }
 
   static QuranCubit get(context) => BlocProvider.of(context);
+
 }

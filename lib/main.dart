@@ -1,12 +1,20 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:quran/screens/splash_screen.dart';
 import 'package:quran/shared/cubit/bloc_observer.dart';
+import 'package:quran/shared/network/remote/dio_helper.dart';
 
-void main() {
+import 'layout/quran_layout.dart';
+
+Future<void> main() async{
   Bloc.observer = MyBlocObserver();
+  await Hive.initFlutter();
+  await Hive.openBox('favorites');
+  DioHelper.init();
   runApp(const MyApp());
 }
 
@@ -23,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyCustomSplashScreen(),
+      home: QuranLayout(),
     );
   }
 }
