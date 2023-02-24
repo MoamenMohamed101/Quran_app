@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:quran/components.dart';
 import 'package:quran/model/surah_model.dart';
+import 'package:quran/provider/bookmark_model.dart';
 
 class SurahTab extends StatelessWidget {
   const SurahTab({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class SurahTab extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
+    var bookmarkBloc = Provider.of<BookmarkBloc>(context);
     return FutureBuilder(
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
@@ -20,7 +23,7 @@ class SurahTab extends StatelessWidget {
           return ListView.separated(
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => surahItem(
-                surah: snapshot.data![index], context: context),
+               snapshot.data![index], context,bookmarkBloc),
             separatorBuilder: (context, index) => Divider(
               color: const Color(0xFF7B80AD).withOpacity(.35),
             ),

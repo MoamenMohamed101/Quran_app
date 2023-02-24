@@ -3,9 +3,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:quran/components.dart';
 import 'package:quran/globals.dart';
+import 'package:quran/model/ayat.dart';
 import 'package:quran/model/surah_model.dart';
+import 'package:quran/provider/bookmark_model.dart';
+import 'package:quran/screens/saved_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   final int? numberOfSura;
@@ -20,9 +24,13 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
+
   bool status = true;
+
   @override
   Widget build(BuildContext context) {
+    var bookmarkBloc = Provider.of<BookmarkBloc>(context);
+
     return FutureBuilder<Surah>(
       initialData: null,
       builder: (context, snapshot) {
@@ -51,14 +59,31 @@ class DetailsScreen extends StatelessWidget {
                   width: 24,
                 ),
                 Text(
-                  surah.latinName,
+                  surah.latinName!,
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                // const Spacer(),
-                // SvgPicture.asset('assets/svgs/search-icon.svg'),
+                Spacer(),
+                Text(
+                  bookmarkBloc.count.toString(),
+                  style: GoogleFonts.poppins(fontSize: 25),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SavedScreen(),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.star),
+                ),
               ],
             ),
           ),
@@ -72,9 +97,8 @@ class DetailsScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: ListView.separated(
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => ayatItem(
-                  snapshot.data!.ayat![index]
-                ),
+                itemBuilder: (context, index) =>
+                    ayatItem(snapshot.data!.ayat![index], bookmarkBloc),
                 separatorBuilder: (context, index) => Container(),
                 itemCount: surah.ayat!.length,
               ),

@@ -1,21 +1,24 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
+import 'package:quran/provider/bookmark_model.dart';
 import 'package:quran/screens/splash_screen.dart';
 import 'package:quran/shared/cubit/bloc_observer.dart';
 import 'package:quran/shared/network/remote/dio_helper.dart';
-
 import 'layout/quran_layout.dart';
 
-Future<void> main() async{
+// const MyApp()
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (BuildContext context) => BookmarkBloc(),
+      child: MyApp(),
+    ),
+  );
   Bloc.observer = MyBlocObserver();
-  await Hive.initFlutter();
-  await Hive.openBox('favorites');
   DioHelper.init();
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: QuranLayout(),
+      home: MyCustomSplashScreen(),
     );
   }
 }
@@ -108,8 +111,7 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
               AnimatedContainer(
                   duration: Duration(milliseconds: 2000),
                   curve: Curves.fastLinearToSlowEaseIn,
-                  height: _height / _fontSize
-              ),
+                  height: _height / _fontSize),
               AnimatedOpacity(
                 duration: Duration(milliseconds: 1000),
                 opacity: _textOpacity,
@@ -155,21 +157,21 @@ class PageTransition extends PageRouteBuilder {
 
   PageTransition(this.page)
       : super(
-    pageBuilder: (context, animation, anotherAnimation) => page,
-    transitionDuration: Duration(milliseconds: 2000),
-    transitionsBuilder: (context, animation, anotherAnimation, child) {
-      animation = CurvedAnimation(
-        curve: Curves.fastLinearToSlowEaseIn,
-        parent: animation,
-      );
-      return Align(
-        alignment: Alignment.bottomCenter,
-        child: SizeTransition(
-          sizeFactor: animation,
-          child: page,
-          axisAlignment: 0,
-        ),
-      );
-    },
-  );
+          pageBuilder: (context, animation, anotherAnimation) => page,
+          transitionDuration: Duration(milliseconds: 2000),
+          transitionsBuilder: (context, animation, anotherAnimation, child) {
+            animation = CurvedAnimation(
+              curve: Curves.fastLinearToSlowEaseIn,
+              parent: animation,
+            );
+            return Align(
+              alignment: Alignment.bottomCenter,
+              child: SizeTransition(
+                sizeFactor: animation,
+                child: page,
+                axisAlignment: 0,
+              ),
+            );
+          },
+        );
 }

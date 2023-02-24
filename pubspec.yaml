@@ -40,8 +40,8 @@ dependencies:
   dio: ^5.0.0
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
+  provider: ^6.0.5
   #audioplayers: ^1.0.1
-  hive_flutter: ^1.1.0
 
 
 
@@ -51,6 +51,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.11.0"
+
 
 flutter_icons:
   android: true

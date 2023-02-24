@@ -13,28 +13,28 @@ String surahToJson(List<Surah> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Surah {
-  int number;
-  String name;
-  String latinName;
-  int numberofAyat;
-  TempatTurun placeGetOff;
-  String meaning;
-  String description;
-  String audio;
+  int? number;
+  String? name;
+  String? latinName;
+  int? numberofAyat;
+  TempatTurun? placeGetOff;
+  String? meaning;
+  String? description;
+  String? audio;
   bool? status;
   List<Ayat>? ayat;
 
   Surah(
-      {required this.number,
-      required this.name,
-      required this.latinName,
-      required this.numberofAyat,
-      required this.placeGetOff,
-      required this.meaning,
-      required this.description,
-      required this.audio,
-      required this.ayat,
-      required this.status});
+      { this.number,
+       this.name,
+       this.latinName,
+       this.numberofAyat,
+       this.placeGetOff,
+       this.meaning,
+       this.description,
+       this.audio,
+       this.ayat,
+       this.status});
 
   factory Surah.fromJson(Map<String, dynamic> json) => Surah(
         number: json["nomor"],
