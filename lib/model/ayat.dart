@@ -6,6 +6,7 @@ class Ayat {
   String tr;
   String idn;
 
+
   Ayat({
     required this.id,
     required this.surah,

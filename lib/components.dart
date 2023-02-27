@@ -298,7 +298,8 @@ ayatItem(Ayat ayat, BookmarkBloc bookmarkBloc) => Padding(
                   ar: ayat.ar,
                   id: ayat.id,
                   idn: ayat.idn,
-                  tr: ayat.tr);
+                  tr: ayat.tr,
+              );
               bookmarkBloc.addItems(ayatModel);
             },
             icon: Icon(

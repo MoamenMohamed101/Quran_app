@@ -25,8 +25,6 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  bool status = true;
-
   @override
   Widget build(BuildContext context) {
     var bookmarkBloc = Provider.of<BookmarkBloc>(context);
@@ -82,7 +80,7 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: Icon(Icons.star),
+                  icon: Icon(Icons.bookmarks),
                 ),
               ],
             ),

@@ -12,7 +12,7 @@ class SavedScreen extends StatelessWidget {
     var bookmarkBloc = Provider.of<BookmarkBloc>(context);
     return Scaffold(
       backgroundColor: background,
-      body:  ListView.builder(
+      body: ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return Padding(
@@ -21,7 +21,8 @@ class SavedScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                   decoration: BoxDecoration(
                     color: grey,
                     borderRadius: BorderRadius.circular(10),
@@ -49,10 +50,9 @@ class SavedScreen extends StatelessWidget {
                       // Text(
                       //   bookmarkBloc.surahh[index].name!,
                       //   style: GoogleFonts.amiri(
-                      //     color: Colors.white,
-                      //     fontWeight: FontWeight.w500,
-                      //     fontSize: 25
-                      //   ),
+                      //       color: Colors.white,
+                      //       fontWeight: FontWeight.w500,
+                      //       fontSize: 25),
                       // ),
                       const Spacer(),
                       Icon(
@@ -75,9 +75,10 @@ class SavedScreen extends StatelessWidget {
                 Text(
                   bookmarkBloc.ayat[index].ar,
                   style: GoogleFonts.amiri(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                   textAlign: TextAlign.right,
                 ),
               ],
@@ -85,7 +86,7 @@ class SavedScreen extends StatelessWidget {
           );
         },
         itemCount: bookmarkBloc.ayat.length,
-      )
+      ),
     );
   }
 }
