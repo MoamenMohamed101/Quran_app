@@ -176,3 +176,15 @@ class PageTransition extends PageRouteBuilder {
           },
         );
 }
+//  {
+//    "id": 5,
+//    "name" : "أذكار الأذان"
+//  },
+//  {
+//    "id": 6,
+//    "name" : "أذكار النوم"
+//  },
+//  {
+//    "id": 7,
+//    "name" : "أذكار الطعام"
+//  }

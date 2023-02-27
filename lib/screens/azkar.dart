@@ -45,6 +45,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
           Azkar azkar = Azkar.fromJson(element);
           azkarr.add(azkar);
         });
+        setState(() {});
       },
     ).catchError(
       (error) {
