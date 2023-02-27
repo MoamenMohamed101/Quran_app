@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/globals.dart';
 import 'package:quran/model/azkar_model.dart';
+import 'package:quran/screens/azkar_details.dart';
 
 class AzkarScreen extends StatefulWidget {
   AzkarScreen({Key? key}) : super(key: key);
@@ -25,11 +26,11 @@ class _AzkarScreenState extends State<AzkarScreen> {
     return Scaffold(
       backgroundColor: background,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView.builder(
           physics: BouncingScrollPhysics(),
           itemBuilder: (BuildContext context, int index) =>
-              buildSectionItem(azkarr[index].name),
+              buildSectionItem(azkarr[index], context),
           itemCount: azkarr.length,
         ),
       ),
@@ -53,26 +54,35 @@ class _AzkarScreenState extends State<AzkarScreen> {
   }
 }
 
-buildSectionItem(String? text) {
-  return Container(
-    margin: EdgeInsets.only(top: 20),
-    width: double.infinity,
-    height: 100,
-    child: Center(
-      child: Text(
-        '$text',
-        // style: TextStyle(
-        //     fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
-        style: GoogleFonts.amiri(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 22),
+buildSectionItem(Azkar azkar, context) {
+  return InkWell(
+    onTap: () {
+      print(azkar.id);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AzkarDetails(azkar.id),
+        ),
+      );
+    },
+    child: Container(
+      margin: EdgeInsets.only(top: 20),
+      width: double.infinity,
+      height: 100,
+      child: Center(
+        child: Text(
+          '${azkar.name}',
+          style: GoogleFonts.amiri(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22),
+        ),
       ),
-    ),
-    decoration: BoxDecoration(
-
-      borderRadius: BorderRadius.circular(10),
-      gradient: LinearGradient(colors: [
-        Colors.purple[200] as Color,
-        Colors.purple[700] as Color,
-      ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        gradient: LinearGradient(colors: [
+          Colors.purple[200] as Color,
+          Colors.purple[700] as Color,
+        ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+      ),
     ),
   );
 }
