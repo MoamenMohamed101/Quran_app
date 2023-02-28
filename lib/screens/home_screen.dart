@@ -15,69 +15,86 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: background,
-      //   elevation: 0.0,
-      //   automaticallyImplyLeading: false,
-      //   title: Row(
-      //     children: [
-      //       SvgPicture.asset('assets/svgs/menu-icon.svg'),
-      //       const SizedBox(
-      //         width: 24,
-      //       ),
-      //       Text(
-      //         'Quran App',
-      //         style: GoogleFonts.poppins(
-      //           fontSize: 20,
-      //           fontWeight: FontWeight.bold,
-      //         ),
-      //       ),
-      //       // const Spacer(),
-      //       // SvgPicture.asset('assets/svgs/search-icon.svg'),
-      //     ],
-      //   ),
-      // ),
       backgroundColor: background,
-      body: SafeArea(
-        child: DefaultTabController(
-          length: 2,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: NestedScrollView(
-              physics: const BouncingScrollPhysics(),
-              headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                SliverToBoxAdapter(
-                  child: greeting(),
-                ),
-                SliverAppBar(
-                  shape: Border(
-                    // change to bottom
-                    bottom: BorderSide(
-                      color: const Color(0xFFAAAAAA).withOpacity(.1),
-                    ),
-                  ),
-                  pinned: true,
-                  elevation: 0.0,
-                  automaticallyImplyLeading: false,
-                  backgroundColor: background,
-                  bottom: PreferredSize(
-                    preferredSize: const Size.fromHeight(0),
-                    // change to tab
-                    child: tab(),
-                  ),
-                ),
-              ],
-              // open comment
-              body: TabBarView(
-                children: [
-                  SurahTab(),
-                  ParaTab(),
-                ],
-              ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+            greeting(),
+            const SizedBox(
+              height: 24,
             ),
-          ),
+            Expanded(
+              child: SurahTab(),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+// Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: background,
+//         elevation: 0.0,
+//         automaticallyImplyLeading: false,
+//         title: Row(
+//           children: [
+//             SvgPicture.asset('assets/svgs/menu-icon.svg'),
+//             const SizedBox(
+//               width: 24,
+//             ),
+//             Text(
+//               'Quran App',
+//               style: GoogleFonts.poppins(
+//                 fontSize: 20,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//             // const Spacer(),
+//             // SvgPicture.asset('assets/svgs/search-icon.svg'),
+//           ],
+//         ),
+//       ),
+//       backgroundColor: background,
+//       body: SafeArea(
+//         child: DefaultTabController(
+//           length: 2,
+//           child: Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: 24),
+//             child: NestedScrollView(
+//               physics: const BouncingScrollPhysics(),
+//               headerSliverBuilder: (context, innerBoxIsScrolled) => [
+//                 SliverToBoxAdapter(
+//                   child: greeting(),
+//                 ),
+//                 SliverAppBar(
+//                   shape: Border(
+//                     // change to bottom
+//                     bottom: BorderSide(
+//                       color: const Color(0xFFAAAAAA).withOpacity(.1),
+//                     ),
+//                   ),
+//                   pinned: true,
+//                   elevation: 0.0,
+//                   automaticallyImplyLeading: false,
+//                   backgroundColor: background,
+//                   bottom: PreferredSize(
+//                     preferredSize: const Size.fromHeight(0),
+//                     // change to tab
+//                     child: tab(),
+//                   ),
+//                 ),
+//               ],
+//               // open comment
+//               body: TabBarView(
+//                 children: [
+//                   SurahTab(),
+//                   ParaTab(),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );

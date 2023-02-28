@@ -6,11 +6,15 @@ import 'dart:convert';
 
 import 'package:quran/model/ayat.dart';
 
-List<Surah> surahFromJson(String str) =>
-    List<Surah>.from(json.decode(str).map((x) => Surah.fromJson(x)));
+List<Surah> surahFromJson(String str) => List<Surah>.from(
+      json.decode(str).map((x) => Surah.fromJson(x)),
+    );
 
-String surahToJson(List<Surah> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String surahToJson(List<Surah> data) => json.encode(
+      List<dynamic>.from(
+        data.map((x) => x.toJson()),
+      ),
+    );
 
 class Surah {
   int? number;
@@ -25,16 +29,16 @@ class Surah {
   List<Ayat>? ayat;
 
   Surah(
-      { this.number,
-       this.name,
-       this.latinName,
-       this.numberofAyat,
-       this.placeGetOff,
-       this.meaning,
-       this.description,
-       this.audio,
-       this.ayat,
-       this.status});
+      {this.number,
+      this.name,
+      this.latinName,
+      this.numberofAyat,
+      this.placeGetOff,
+      this.meaning,
+      this.description,
+      this.audio,
+      this.ayat,
+      this.status});
 
   factory Surah.fromJson(Map<String, dynamic> json) => Surah(
         number: json["nomor"],

@@ -6,15 +6,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:quran/components.dart';
 import 'package:quran/globals.dart';
-import 'package:quran/model/ayat.dart';
 import 'package:quran/model/surah_model.dart';
 import 'package:quran/provider/bookmark_model.dart';
 import 'package:quran/screens/saved_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   final int? numberOfSura;
+  final Surah? surah;
 
-  DetailsScreen(this.numberOfSura, {super.key});
+
+  DetailsScreen({this.numberOfSura,this.surah, super.key});
+
+  List ayatOfQuran = [];
 
   Future<Surah> getDetails() async {
     var data = await Dio().get('https://equran.id/api/surat/$numberOfSura');
@@ -108,3 +111,11 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 }
+//  Future<Surah> getDetails() async {
+//     var data = await Dio().get('https://equran.id/api/surat/$numberOfSura');
+//     return Surah.fromJson(
+//       json.decode(
+//         data.toString(),
+//       ),
+//     );
+//   }

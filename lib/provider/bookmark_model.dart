@@ -11,6 +11,10 @@ class BookmarkBloc extends ChangeNotifier {
     _count++;
     notifyListeners();
   }
+  void minusCount() {
+    _count--;
+    notifyListeners();
+  }
 
   void addItems(Ayat data) {
     ayat.add(data);

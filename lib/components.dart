@@ -338,7 +338,7 @@ surahItem(Surah? surah, BuildContext? context,BookmarkBloc? bookmarkBloc) => Ink
         Navigator.push(
           context!,
           MaterialPageRoute(
-            builder: (context) => DetailsScreen(surah.number),
+            builder: (context) => DetailsScreen(numberOfSura: surah.number),
           ),
         );
       },
