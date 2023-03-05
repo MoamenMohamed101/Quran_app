@@ -40,7 +40,9 @@ dependencies:
   dio: ^5.0.0
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
-  provider: ^6.0.5
+  provider: ^6.0.1
+  sqflite: ^2.2.5
+  shared_preferences: ^2.0.18
   #audioplayers: ^1.0.1
 
 

@@ -15,3 +15,9 @@ class QuranLoadingGetDetailsStates extends QuranStates {}
 class QuranSuccessGetDetailsStates extends QuranStates {}
 
 class QuranErrorGetDetailsStates extends QuranStates {}
+
+class QuranCreateDataBaseStates extends QuranStates {}
+
+class QuranInsertSuccessDataBaseStates extends QuranStates {}
+
+class QuranInsertErrorDataBaseStates extends QuranStates {}

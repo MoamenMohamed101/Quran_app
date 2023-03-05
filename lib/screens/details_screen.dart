@@ -9,15 +9,12 @@ import 'package:quran/globals.dart';
 import 'package:quran/model/surah_model.dart';
 import 'package:quran/provider/bookmark_model.dart';
 import 'package:quran/screens/saved_screen.dart';
-
 class DetailsScreen extends StatelessWidget {
   final int? numberOfSura;
   final Surah? surah;
 
 
   DetailsScreen({this.numberOfSura,this.surah, super.key});
-
-  List ayatOfQuran = [];
 
   Future<Surah> getDetails() async {
     var data = await Dio().get('https://equran.id/api/surat/$numberOfSura');
@@ -27,18 +24,18 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
-
   @override
   Widget build(BuildContext context) {
     var bookmarkBloc = Provider.of<BookmarkBloc>(context);
-
     return FutureBuilder<Surah>(
       initialData: null,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Scaffold(
-            backgroundColor: background,
-            body: const Center(
+          return Container(
+            height: double.infinity,
+            width: double.infinity,
+            color: background,
+            child: const Center(
               child: CircularProgressIndicator(),
             ),
           );
@@ -67,13 +64,13 @@ class DetailsScreen extends StatelessWidget {
                   ),
                 ),
                 Spacer(),
-                Text(
-                  bookmarkBloc.count.toString(),
-                  style: GoogleFonts.poppins(fontSize: 25),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
+                // Text(
+                //   bookmarkBloc.count.toString(),
+                //   style: GoogleFonts.poppins(fontSize: 25),
+                // ),
+                // SizedBox(
+                //   width: 5,
+                // ),
                 IconButton(
                   onPressed: () {
                     Navigator.push(
@@ -88,6 +85,7 @@ class DetailsScreen extends StatelessWidget {
               ],
             ),
           ),
+          // To make the appbar and the listview scrollable together
           body: NestedScrollView(
             headerSliverBuilder: (context, headerSliverBuilder) => [
               SliverToBoxAdapter(
@@ -99,7 +97,7 @@ class DetailsScreen extends StatelessWidget {
               child: ListView.separated(
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) =>
-                    ayatItem(snapshot.data!.ayat![index], bookmarkBloc),
+                    ayatItem(surah.ayat![index], bookmarkBloc),
                 separatorBuilder: (context, index) => Container(),
                 itemCount: surah.ayat!.length,
               ),
@@ -111,11 +109,3 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 }
-//  Future<Surah> getDetails() async {
-//     var data = await Dio().get('https://equran.id/api/surat/$numberOfSura');
-//     return Surah.fromJson(
-//       json.decode(
-//         data.toString(),
-//       ),
-//     );
-//   }

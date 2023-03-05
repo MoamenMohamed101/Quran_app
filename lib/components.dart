@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/globals.dart';
@@ -7,6 +10,9 @@ import 'package:quran/model/surah_model.dart';
 import 'package:quran/provider/bookmark_model.dart';
 import 'package:quran/screens/details_screen.dart';
 import 'package:quran/screens/tasbeehScreen.dart';
+import 'package:quran/shared/cubit/cubit.dart';
+import 'package:quran/shared/cubit/states.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // purple container
 lastRead() => Stack(
@@ -232,109 +238,130 @@ details(Surah surah) => Padding(
       ),
     );
 
-ayatItem(Ayat ayat, BookmarkBloc bookmarkBloc) => Padding(
-  padding: const EdgeInsets.only(top: 24),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        decoration: BoxDecoration(
-          color: grey,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          children: [
-            Container(
-              height: 27,
-              width: 27,
-              decoration: BoxDecoration(
-                color: primary,
-                borderRadius: BorderRadius.circular(27 / 2),
-              ),
-              child: Center(
-                child: Text(
-                  '${ayat.nomor}',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
+ayatItem(Ayat ayat, BookmarkBloc bookmarkBloc) => BlocProvider(
+      create: (BuildContext context) => QuranCubit(),
+      child: BlocConsumer<QuranCubit , QuranStates>(
+        builder: (BuildContext context, state) {
+          return  Padding(
+            padding: const EdgeInsets.only(top: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: grey,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 27,
+                        width: 27,
+                        decoration: BoxDecoration(
+                          color: primary,
+                          borderRadius: BorderRadius.circular(27 / 2),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '${ayat.nomor}',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const Spacer(),
+
+                      Icon(
+                        Icons.share_outlined,
+                        color: primary,
+                      ),
+
+                      const SizedBox(
+                        width: 16,
+                      ),
+
+                      Icon(
+                        Icons.play_arrow_outlined,
+                        color: primary,
+                      ),
+                      // const SizedBox(
+                      //   width: 16,
+                      // ),
+                      // Icon(Icons.bookmark_outline, color: primary),
+                    ],
                   ),
                 ),
-              ),
-            ),
-            const Spacer(),
-            Icon(
-              Icons.share_outlined,
-              color: primary,
-            ),
-            const SizedBox(
-              width: 16,
-            ),
-            Icon(
-              Icons.play_arrow_outlined,
-              color: primary,
-            ),
-            // const SizedBox(
-            //   width: 16,
-            // ),
-            // Icon(Icons.bookmark_outline, color: primary),
-          ],
-        ),
-      ),
 
-      const SizedBox(
-        height: 24,
-      ),
+                const SizedBox(
+                  height: 24,
+                ),
 
-      Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-            onPressed: () {
-              bookmarkBloc.addCount();
-              var ayatModel = new Ayat(
-                  nomor: ayat.nomor,
-                  surah: ayat.surah,
-                  ar: ayat.ar,
-                  id: ayat.id,
-                  idn: ayat.idn,
-                  tr: ayat.tr,
-              );
-              bookmarkBloc.addItems(ayatModel);
-            },
-            icon: Icon(
-              Icons.bookmark_outline,
-              size: 30,
-              color: Colors.white,
-            ),
-          ),
-          Expanded(
-            child: Text(
-              ayat.ar,
-              style: GoogleFonts.amiri(
-                color: Colors.white,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.right,
-            ),
-          ),
-        ],
-      ),
-      // Text(
-      //   ayat.idn,
-      //   style: GoogleFonts.poppins(color: textColor, fontSize: 18),
-      // ),
-    ],
-  ),
-);
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        bookmarkBloc.addCount();
+                        // To do add to bookmark list
+                        var ayatModel = new Ayat(
+                          nomor: ayat.nomor,
+                          surah: ayat.surah,
+                          ar: ayat.ar,
+                          id: ayat.id,
+                          idn: ayat.idn,
+                          tr: ayat.tr,
+                        );
+                        bookmarkBloc.addItems(ayatModel);
+                        String? json = jsonEncode(ayatModel);
+                        SharedPreferences.getInstance().then((value) {
+                          value.setString('bookmark', json);
+                          print('data saved');
+                        }).catchError((error){
+                          print(error.toString());
+                        });
+                      },
+                      icon: Icon(
+                        Icons.bookmark_outline,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        ayat.ar,
+                        style: GoogleFonts.amiri(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                  ],
+                ),
 
-surahItem(Surah? surah, BuildContext? context,BookmarkBloc? bookmarkBloc) => InkWell(
-      onTap: (){
-        var suurah = new Surah(
-          name: surah.name,
-        );
-        bookmarkBloc!.addItemsSurah(suurah);
+                // Text(
+
+                //   ayat.idn,
+
+                //   style: GoogleFonts.poppins(color: textColor, fontSize: 18),
+
+                // ),
+              ],
+            ),
+          );
+        },
+        listener: (BuildContext context, Object? state) {  },
+      ),
+    );
+
+surahItem(Surah? surah, BuildContext? context, BookmarkBloc? bookmarkBloc) =>
+    InkWell(
+      onTap: () {
         Navigator.push(
           context!,
           MaterialPageRoute(
