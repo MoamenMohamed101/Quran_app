@@ -10,7 +10,7 @@ class QuranLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => QuranCubit()..createDataBase(),
+      create: (BuildContext context) => QuranCubit(),
       child: BlocConsumer<QuranCubit,QuranStates>(
         builder: (context, states) {
           var cubit = QuranCubit.get(context);

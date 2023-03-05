@@ -69,37 +69,4 @@ class QuranCubit extends Cubit<QuranStates> {
   }
 
   static QuranCubit get(context) => BlocProvider.of(context);
-
-  void createDataBase() async {
-    database = await openDatabase('quran.db', version: 2,
-        onCreate: (database, version) {
-      print('database created');
-      database
-          .execute(
-              'CREATE TABLE quran (id INTEGER PRIMARY KEY, number INTEGER, ar TEXT)')
-          .then((value) {
-        print('table created');
-        emit(QuranCreateDataBaseStates());
-      }).catchError((error) {
-        print('Error When Creating Table ${error.toString()}');
-      });
-    },
-        onOpen: (database) {
-      print('database opened');
-    });
-  }
-
-  void insertData({int? number, String? ar}) {
-    database!.transaction((txn) {
-      return txn
-          .rawInsert('INSERT INTO quran(number, ar) VALUES("$number", "$ar")')
-          .then((value) {
-        emit(QuranInsertSuccessDataBaseStates());
-        print('$value inserted successfully');
-      }).catchError((error) {
-        emit(QuranInsertErrorDataBaseStates());
-        print('Error When insert New Record ${error.toString()}');
-      });
-    });
-  }
 }
