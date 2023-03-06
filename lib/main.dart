@@ -115,7 +115,7 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
                 duration: Duration(milliseconds: 1000),
                 opacity: _textOpacity,
                 child: Text(
-                  'Quran',
+                  'The Holy Quran',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -138,7 +138,8 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
+                  //borderRadius: BorderRadius.circular(30),
+                  shape: BoxShape.circle,
                 ),
                 // child: Image.asset('assets/images/file_name.png')
                 child: Image.asset('assets/images/quran.png'),
@@ -186,3 +187,4 @@ class PageTransition extends PageRouteBuilder {
 //    "id": 7,
 //    "name" : "أذكار الطعام"
 //  }
+// Iconfinder.com
