@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:quran/layout/quran_layout.dart';
 import 'package:quran/provider/bookmark_model.dart';
 import 'package:quran/screens/splash_screen.dart';
 import 'package:quran/shared/cubit/bloc_observer.dart';
