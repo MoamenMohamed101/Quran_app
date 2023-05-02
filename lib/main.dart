@@ -30,6 +30,16 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        iconButtonTheme: IconButtonThemeData(
+          style: ButtonStyle(
+            iconColor: MaterialStatePropertyAll(Colors.white),
+          ),
+        ),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(color: Colors.white, fontSize: 23),
+          //actionsIconTheme: IconThemeData(color: Colors.white,)
+        ),
+        useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
       home: MyCustomSplashScreen(),
